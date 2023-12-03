@@ -7,6 +7,7 @@ import styles from "./header.module.scss"
 
 const Header: FC = () => {
     const categoriesListObj = useAppSelector(state => state.categoriesObj.entities);
+    // const { isAuth } = useAppSelector(state => state.auth.auth);
 
     return (
         <header className={styles.header}>
@@ -27,6 +28,9 @@ const Header: FC = () => {
                     ))}
                     <div className={styles.nav__item}>
                         <NavLink to="/dashboard" activeClassName={styles.active}>Управление</NavLink>
+                    </div>
+                    <div className={styles.nav__item}>
+                        <Link to="/auth">Войти</Link>
                     </div>
                     <div className={styles.nav__item + " " + styles.badge}>
                         <BasicPopover />

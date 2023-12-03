@@ -38,3 +38,13 @@ export interface Orders {
     totalPrice: number,
     order: Basket[]
 };
+
+
+export interface Register {
+    login: string,
+    password: string,
+};
+
+export interface Auth {
+    isAuth: boolean
+}
