@@ -16,6 +16,8 @@ import Order from "./components/order";
 import AddressPage from "./components/common/page/registrationOrder/addressPage/addressPage";
 import DishesLoader from "./components/common/ui/hoc/dishesLoader";
 import DashboardIndex from "./components/common/page/dashboard/dashboardIndex";
+import AuthPage from "./components/common/page/auth/AuthPage";
+import RegisterPage from "./components/common/page/register/RegisterPage";
 
 const App: FC = () => {
     const routes = [
@@ -28,8 +30,10 @@ const App: FC = () => {
         {path: "/dashboard/:dishId?", Component: DashboardIndex},
         {path: "/order", Component: Order},
         {path: "/order_address", Component: AddressPage},
-        {path: "/сonfirmation", Component: Confirmation},
-        {path: "/", Component: MainPage}
+        {path: "/confirmation", Component: Confirmation},
+        {path: "/", Component: MainPage},
+        {path: "/auth", Component: AuthPage},
+        {path: "/register", Component: RegisterPage},
     ];
     
     const location = useLocation();
