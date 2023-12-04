@@ -1,13 +1,22 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import MuiDrawer from "../MuiDrawer/MuiDrawer";
 import BasicPopover from "../../common/ui/popoverBaskets/popoverBaskets";
-import { useAppSelector } from "../../../hooks/hook";
+import { useAppDispatch, useAppSelector } from "../../../hooks/hook";
 import styles from "./header.module.scss"
+import { authSliceAction } from "../../../store/authSlice";
 
 const Header: FC = () => {
     const categoriesListObj = useAppSelector(state => state.categoriesObj.entities);
-    // const { isAuth } = useAppSelector(state => state.auth.auth);
+    const { isAuth }: any = useAppSelector(state => state.auth);
+
+    const dispatch = useAppDispatch();
+
+    const onLogout = () => {
+        if (isAuth !== null) {
+            dispatch(authSliceAction.deleteAuth());
+        }
+    };
 
     return (
         <header className={styles.header}>
@@ -29,9 +38,12 @@ const Header: FC = () => {
                     <div className={styles.nav__item}>
                         <NavLink to="/dashboard" activeClassName={styles.active}>Управление</NavLink>
                     </div>
-                    <div className={styles.nav__item}>
+                    {isAuth ? (
+                        <div className={styles.nav__item}><span onClick={onLogout}>Выйти</span></div>
+                    ) : (<div className={styles.nav__item}>
                         <Link to="/auth">Войти</Link>
-                    </div>
+                    </div>)}
+                    
                     <div className={styles.nav__item + " " + styles.badge}>
                         <BasicPopover />
                     </div>

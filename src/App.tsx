@@ -35,7 +35,7 @@ const App: FC = () => {
         {path: "/auth", Component: AuthPage},
         {path: "/register", Component: RegisterPage},
     ];
-    
+   
     const location = useLocation();
 
     return (

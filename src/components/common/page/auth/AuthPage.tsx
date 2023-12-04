@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import scss from "./AuthPage.module.scss";
-import { getRegisterStorage, setAuth } from "../../../../store/auth";
+import { authSliceAction, getRegisterStorage } from "../../../../store/authSlice";
 import { useAppDispatch } from "../../../../hooks/hook";
 import { Link, useHistory } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const AuthPage: FC = () => {
     const auth = await getRegisterStorage();
     if (auth !== null) {
       if (auth.login === login && auth.password === pass) {
-        dispatch(setAuth);
+        dispatch(authSliceAction.setAuth({ isAuth: true }));
         alert("Вы успешно вошли!");
         history.push("/");
       } else {
