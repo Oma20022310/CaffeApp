@@ -4,7 +4,7 @@ import countBasketReducer from "./countBasket";
 import dishesReducer from "./dishes";
 import categoriesObjReducer from "./categoriesObj";
 import ordersReducer from "./orders";
-import authReducer from "./auth";
+import {authSliceReducer} from "./authSlice";
 
 
 const rootReducer = combineReducers({
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
     orders: ordersReducer,
     dishes: dishesReducer,
     categoriesObj: categoriesObjReducer,
-    auth: authReducer
+    auth: authSliceReducer,
 });
 
 const store = configureStore({

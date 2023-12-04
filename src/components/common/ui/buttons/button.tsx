@@ -1,6 +1,6 @@
 import { Alert, useMediaQuery } from "@mui/material";
 import Snackbar, { SnackbarOrigin } from '@mui/material/Snackbar';
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import CheckIcon from '@mui/icons-material/Check';
 import { useAppDispatch, useAppSelector } from "../../../../hooks/hook";
 import { AddCountBasket } from "../../../../store/countBasket";
@@ -22,6 +22,9 @@ export interface State extends SnackbarOrigin {
 
 const Button: FC<Props> = ({ id, img, name, price, weight }) => {
     const dispatch = useAppDispatch();
+    // const isAuth = getIsAuth();
+    const { isAuth }: any = useAppSelector(state => state.auth);
+
     const basket = useAppSelector(state => state.basket.entities);
     const [state, setState] = useState<State>({
         open: false,
@@ -60,9 +63,11 @@ const Button: FC<Props> = ({ id, img, name, price, weight }) => {
 
     return (
         <>
+        {isAuth ? (
             <div className={styles.button} onClick={() => handleClick(id, price, { vertical: matches ? 'bottom' : "top", horizontal: "center" })}>
                 <p>В корзину</p>
             </div>
+            ) : null}
             <Snackbar
                 open={open}
                 autoHideDuration={1000}

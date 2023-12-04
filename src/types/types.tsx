@@ -46,5 +46,5 @@ export interface Register {
 };
 
 export interface Auth {
-    isAuth: boolean
+    isAuth: boolean,
 }
