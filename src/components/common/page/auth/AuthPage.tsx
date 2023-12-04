@@ -1,8 +1,12 @@
 import { FC, useState } from "react";
 import scss from "./AuthPage.module.scss";
-import { authSliceAction, getRegisterStorage } from "../../../../store/authSlice";
+import {
+  authSliceAction,
+  getRegisterStorage,
+} from "../../../../store/authSlice";
 import { useAppDispatch } from "../../../../hooks/hook";
 import { Link, useHistory } from "react-router-dom";
+import { adminSliceAction } from "../../../../store/adminSlice";
 
 const AuthPage: FC = () => {
   const [login, setLogin] = useState<string>("");
@@ -25,8 +29,12 @@ const AuthPage: FC = () => {
       } else {
         setError(true);
       }
-    } else if (login === "admin" && pass === "admin") {
-      // logic
+    }
+    if (login === "admin" && pass === "admin") {
+      console.log("Hello admin!");
+      dispatch(adminSliceAction.setAdmin(true));
+      alert("добро пожаловать, Админ!")
+      history.push("/dashboard");
     } else {
       setMessage("Пользователь не найден. Пройдите регистрацию!");
     }
