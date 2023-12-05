@@ -45,7 +45,7 @@ const App: FC = () => {
       <ScrollToTop />
       {isAdmin ? null : location.pathname !== "/order" &&
         location.pathname !== "/order_address" &&
-        location.pathname !== "/сonfirmation" ? (
+        location.pathname !== "/confirmation" ? (
         <Header />
       ) : null}
       {routes.map(({ path, Component }) => (
@@ -64,7 +64,7 @@ const App: FC = () => {
       ))}
       {location.pathname !== "/order" &&
       location.pathname !== "/order_address" &&
-      location.pathname !== "/сonfirmation" &&
+      location.pathname !== "/confirmation" &&
       location.pathname !== "/dashboard" ? (
         <Footer />
       ) : null}

@@ -4,8 +4,11 @@ type CountBasketState = {
     entities: number;
 };
 
+const storedCountBasketString = localStorage.getItem("countBasket");
+const storedCountBasket = storedCountBasketString ? JSON.parse(storedCountBasketString) : 0;
+
 const initialState: CountBasketState = {
-    entities: 0,
+    entities: storedCountBasket,
 }
 
 const countBasketSlice = createSlice({
@@ -14,12 +17,15 @@ const countBasketSlice = createSlice({
     reducers: {
         AddCountBasket: (state, action) => {
             state.entities += action.payload;
+            localStorage.setItem("countBasket", JSON.stringify(state.entities));
         },
         decrementCountBasket: (state, action) => {
             state.entities -= action.payload;
+            localStorage.setItem("countBasket", JSON.stringify(state.entities));
         },
         clearCountBaske: (state) => {
             state.entities = 0;
+            localStorage.removeItem("countBasket");
         }
     }
 });
