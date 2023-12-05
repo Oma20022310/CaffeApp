@@ -6,9 +6,12 @@ type OrdersState = {
     count: number
 };
 
+const storedOrdersString = localStorage.getItem("orders");
+const storedOrders = storedOrdersString ? JSON.parse(storedOrdersString) : [];
+
 const initialState: OrdersState = {
-    entities: [],
-    count: 1
+    entities: storedOrders,
+    count: storedOrders.length + 1,
 }
 
 const ordersSlice = createSlice({
@@ -17,10 +20,12 @@ const ordersSlice = createSlice({
     reducers: {
         ordersReceved: (state, action: PayloadAction<Orders[]>) => {
             state.entities = action.payload;
+            localStorage.setItem("orders", JSON.stringify(action.payload));
         },
         addOrders: (state, action: PayloadAction<Orders>) => {
             state.entities.push(action.payload);
             state.count += 1;
+            localStorage.setItem("orders", JSON.stringify(state.entities));
         },
     }
 });

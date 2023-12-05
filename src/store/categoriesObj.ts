@@ -6,9 +6,12 @@ type categoriesObjState = {
     lastFetch: number;
 };
 
+const storedCategoriesObjString = localStorage.getItem("categoriesObj");
+const storedCategoriesObj = storedCategoriesObjString ? JSON.parse(storedCategoriesObjString) : [];
+
 const initialState: categoriesObjState = {
-    entities: [],
-    lastFetch: 0
+    entities: storedCategoriesObj,
+    lastFetch: Date.now(),
 }
 
 const categoriesObjSlice = createSlice({
@@ -19,6 +22,7 @@ const categoriesObjSlice = createSlice({
             if (action.payload) {
                 state.entities = Object.values(action.payload);
                 state.lastFetch = Date.now();
+                localStorage.setItem("categoriesObj", JSON.stringify(state.entities));
             }
         }
     }
