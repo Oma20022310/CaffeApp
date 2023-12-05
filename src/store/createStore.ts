@@ -4,8 +4,9 @@ import countBasketReducer from "./countBasket";
 import dishesReducer from "./dishes";
 import categoriesObjReducer from "./categoriesObj";
 import ordersReducer from "./orders";
-import {authSliceReducer} from "./authSlice";
+import { authSliceReducer } from "./authSlice";
 import { adminSliceReducer } from "./adminSlice";
+import { reviewSliceReducer } from "./reviewSlice";
 
 
 const rootReducer = combineReducers({
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
     categoriesObj: categoriesObjReducer,
     auth: authSliceReducer,
     admin: adminSliceReducer,
+    review: reviewSliceReducer,
 });
 
 const store = configureStore({
