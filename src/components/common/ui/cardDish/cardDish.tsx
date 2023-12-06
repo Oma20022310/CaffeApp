@@ -23,9 +23,6 @@ type Review = {
 
 const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
   const { isAuth }: any = useAppSelector((state) => state.auth);
-  // const { rating }: any = useAppSelector((state) => state.review);
-  // const { comment }: any = useAppSelector((state) => state.review);
-  // const idReview: any = useAppSelector((state) => state.review.id);
   const { result }: any = useAppSelector((state) => state.review);
   const [open, setOpen] = useState<boolean>(false);
 
