@@ -33,44 +33,6 @@ const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
     setOpen(!open);
   };
 
-  // const renderReview = useMemo(() => {
-  //   result.map((item: Review) => (
-  //     <div>
-  //       {item.id === id ? (
-  //         item.rating === 1 ? (
-  //           <StarIcon />
-  //         ) : item.rating === 2 ? (
-  //           <div>
-  //             <StarIcon />
-  //             <StarIcon />
-  //           </div>
-  //         ) : item.rating === 3 ? (
-  //           <div>
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //           </div>
-  //         ) : item.rating === 4 ? (
-  //           <div>
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //           </div>
-  //         ) : item.rating === 5 ? (
-  //           <div>
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //             <StarIcon />
-  //           </div>
-  //         ) : null
-  //       ) : null}
-  //     </div>
-  //   ));
-  // }, [result, id]);
-
   return (
     <div className={styles.card}>
       <div className={styles.product}>
@@ -80,57 +42,52 @@ const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
         <div className={styles.dish__info}>
           <h1 className={styles.info__name}>{name}</h1>
           <div className={styles.review}>
-            {result.map((item: Review) => (
-              <div>
-                {item.id === id ? (
-                  item.rating === 1 ? (
-                    <StarIcon />
-                  ) : item.rating === 2 ? (
-                    <div>
+            <div>
+              {result.map((item: Review) => (
+                <>
+                  {item.id === id ? (
+                    item.rating === 1 ? (
                       <StarIcon />
-                      <StarIcon />
-                    </div>
-                  ) : item.rating === 3 ? (
-                    <div>
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                    </div>
-                  ) : item.rating === 4 ? (
-                    <div>
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                    </div>
-                  ) : item.rating === 5 ? (
-                    <div>
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                      <StarIcon />
-                    </div>
-                  ) : null
-                ) : null}
-              </div>
-            ))}
-            {/* {idReview === id ? (
-              <div>
-                <p className={styles.reviewText}>{comment}</p>
-              </div>
-            ) : null} */}
-            {result.map((item: Review) => (
-              <div>
-                {
-                  (item.id === id ? (
-                    <div>
-                      <p>{item.comment}</p>
-                    </div>
-                  ) : null)
-                }
-              </div>
-            ))}
+                    ) : item.rating === 2 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 3 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 4 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 5 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : null
+                  ) : null}
+                </>
+              ))}
+            </div>
+            <div>
+              {result.map((item: Review) => (
+                <>
+                  {item.id === id ? (
+                    <p className={styles.reviewText}>{item.comment}</p>
+                  ) : null}
+                </>
+              ))}
+            </div>
           </div>
           <p className={styles.info__description}>{description}</p>
         </div>
