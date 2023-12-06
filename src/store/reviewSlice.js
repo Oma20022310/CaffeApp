@@ -6,26 +6,26 @@ export const getReviewStorage = () => {
   return res;
 };
 
-const initialState = {
-  rating: 0,
-  comment: "",
-  isReview: false,
-  id: "",
-};
-
 // const initialState = {
-//   result: [],
+//   rating: 0,
+//   comment: "",
+//   isReview: false,
+//   id: "",
 // };
+
+const initialState = {
+  result: [],
+};
 
 const reviewSlice = createSlice({
   name: "review",
   initialState,
   reducers: {
     setData: (state, action) => {
-      state.rating = action.payload.rating;
-      state.comment = action.payload.comment;
-      state.isReview = action.payload.isReview;
-      state.id = action.payload.id;
+      state.result.push(action.payload);
+      // state.comment = action.payload.comment;
+      // state.isReview = action.payload.isReview;
+      // state.id = action.payload.id;
       console.log(state);
       localStorage.setItem("review", JSON.stringify(state.result));
     },

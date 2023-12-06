@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useMemo } from "react";
 import Button from "../buttons/button";
 import styles from "./cardDish.module.scss";
 import { useAppSelector } from "../../../../hooks/hook";
@@ -14,11 +14,19 @@ type Props = {
   weight: string;
 };
 
+type Review = {
+  rating: number;
+  comment: string;
+  isReview: boolean;
+  id: string;
+};
+
 const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
   const { isAuth }: any = useAppSelector((state) => state.auth);
-  const { rating }: any = useAppSelector((state) => state.review);
-  const { comment }: any = useAppSelector((state) => state.review);
-  const idReview: any = useAppSelector((state) => state.review.id);
+  // const { rating }: any = useAppSelector((state) => state.review);
+  // const { comment }: any = useAppSelector((state) => state.review);
+  // const idReview: any = useAppSelector((state) => state.review.id);
+  const { result }: any = useAppSelector((state) => state.review);
   const [open, setOpen] = useState<boolean>(false);
 
   const handleReview = () => {
@@ -34,42 +42,52 @@ const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
         <div className={styles.dish__info}>
           <h1 className={styles.info__name}>{name}</h1>
           <div className={styles.review}>
-            {idReview === id ? (
-              rating === 1 ? (
-                <StarIcon />
-              ) : rating === 2 ? (
-                <div>
-                  <StarIcon />
-                  <StarIcon />
-                </div>
-              ) : rating === 3 ? (
-                <div>
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                </div>
-              ) : rating === 4 ? (
-                <div>
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                </div>
-              ) : rating === 5 ? (
-                <div>
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                  <StarIcon />
-                </div>
-              ) : null
-            ) : null}
-            {idReview === id ? (
-              <div>
-                <p className={styles.reviewText}>{comment}</p>
-              </div>
-            ) : null}
+            <div>
+              {result.map((item: Review) => (
+                <>
+                  {item.id === id ? (
+                    item.rating === 1 ? (
+                      <StarIcon />
+                    ) : item.rating === 2 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 3 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 4 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : item.rating === 5 ? (
+                      <>
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                        <StarIcon />
+                      </>
+                    ) : null
+                  ) : null}
+                </>
+              ))}
+            </div>
+            <div>
+              {result.map((item: Review) => (
+                <>
+                  {item.id === id ? (
+                    <p className={styles.reviewText}>{item.comment}</p>
+                  ) : null}
+                </>
+              ))}
+            </div>
           </div>
           <p className={styles.info__description}>{description}</p>
         </div>
