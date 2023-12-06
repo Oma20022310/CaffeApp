@@ -17,6 +17,7 @@ type Props = {
 const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
   const { isAuth }: any = useAppSelector((state) => state.auth);
   const { rating }: any = useAppSelector((state) => state.review);
+  const { comment }: any = useAppSelector((state) => state.review);
   const idReview: any = useAppSelector((state) => state.review.id);
   const [open, setOpen] = useState<boolean>(false);
 
@@ -32,37 +33,44 @@ const CardDish: FC<Props> = ({ id, img, name, description, price, weight }) => {
       <div className={styles.dish}>
         <div className={styles.dish__info}>
           <h1 className={styles.info__name}>{name}</h1>
-          {idReview === id ? (
-            rating === 1 ? (
-              <StarIcon />
-            ) : rating === 2 ? (
+          <div className={styles.review}>
+            {idReview === id ? (
+              rating === 1 ? (
+                <StarIcon />
+              ) : rating === 2 ? (
+                <div>
+                  <StarIcon />
+                  <StarIcon />
+                </div>
+              ) : rating === 3 ? (
+                <div>
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                </div>
+              ) : rating === 4 ? (
+                <div>
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                </div>
+              ) : rating === 5 ? (
+                <div>
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                  <StarIcon />
+                </div>
+              ) : null
+            ) : null}
+            {idReview === id ? (
               <div>
-                <StarIcon />
-                <StarIcon />
+                <p className={styles.reviewText}>{comment}</p>
               </div>
-            ) : rating === 3 ? (
-              <div>
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-              </div>
-            ) : rating === 4 ? (
-              <div>
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-              </div>
-            ) : rating === 5 ? (
-              <div>
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-                <StarIcon />
-              </div>
-            ) : null
-          ) : null}
+            ) : null}
+          </div>
           <p className={styles.info__description}>{description}</p>
         </div>
         <div className={styles.price__dish}>

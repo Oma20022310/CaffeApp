@@ -1,7 +1,7 @@
 .card {
   box-sizing: border-box;
   min-height: 390px;
-  max-height: 390px;
+  max-height: 420px;
   max-width: 450px;
   border-radius: 30px;
   overflow: hidden;
@@ -88,4 +88,19 @@
     border-radius: 15px;
     background-color: transparent;
   }
+}
+
+.commentText {
+
+}
+
+.review {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0px;
+}
+
+.reviewText{
+  opacity: 0.5;
 }
