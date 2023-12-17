@@ -14,7 +14,7 @@
 
 .header__item {
     margin: 0 auto;
-    width: 75%;
+    width: 85%;
     height: 100%;
     display: flex;
     justify-content: space-between;
@@ -44,7 +44,7 @@
 .nav__item {
     margin-left: 20px;
     font-size: 20px;
-
+    cursor: pointer;
     @media screen and (min-width: 0) and (max-width: 900px) {
         display: none;
     }
