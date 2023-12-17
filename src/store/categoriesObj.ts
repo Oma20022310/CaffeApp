@@ -30,6 +30,6 @@ const categoriesObjSlice = createSlice({
 
 const { reducer: categoriesObjReducer, actions } = categoriesObjSlice;
 export const { categoriesObjReceved } = actions;
-//dsfsdfsываыавыываваыв
+//dsfsdfsываыавыываваывфыв
 export default categoriesObjReducer;
 
